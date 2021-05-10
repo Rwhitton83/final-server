@@ -14,6 +14,8 @@ app.use(cors({
     credentials: true
 }));
 
+app.use(bodyParser.urlencoded({ extended: true}));
+
 const db = mysql.createConnection({
     user: "bce648d0ad3ef0",
     host: "us-cdbr-east-03.cleardb.com",
