@@ -22,10 +22,7 @@ const db = mysql.createConnection({
 
 app.post("/fav", (req, res) => {
     if(req.session.user){
-
         const favTitle = req.body.favTitle;
-
-        
         db.query(
             "INSERT INTO favorites SET favTitle = ?", 
             [favTitle], 
@@ -41,6 +38,6 @@ app.post("/fav", (req, res) => {
     }
 })
 
-app.listen(process.env.PORT || PORT, ()=> {
+app.listen(process.env.PORT, ()=> {
     console.log('Server Running' + process.env.PORT);
 })
