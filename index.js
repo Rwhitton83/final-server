@@ -38,6 +38,22 @@ app.post("/fav", (req, res) => {
     }
 })
 
+app.get("/fav", (req, res) => {
+    if (req.session.user){
+        db.query(
+            "SELECT * FROM favorites",
+             [],
+             (err, result) => {
+                 if (err){
+                     console.log(err);
+                 }
+                 else{
+                     res.send(result)
+                 }
+             })
+    }
+})
+
 app.listen(process.env.PORT, ()=> {
     console.log('Server Running' + process.env.PORT);
 })
