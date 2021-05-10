@@ -24,7 +24,6 @@ const db = mysql.createConnection({
 });
 
 app.post("/fav", (req, res) => {
-    if(req.session.user){
         const favTitle = req.body.favTitle;
         db.query(
             "INSERT INTO favorites SET favTitle = ?", 
@@ -38,11 +37,9 @@ app.post("/fav", (req, res) => {
                 }
             }
         );
-    }
 })
 
 app.get("/fav", (req, res) => {
-    if (req.session.user){
         db.query(
             "SELECT * FROM favorites",
              [],
@@ -54,7 +51,6 @@ app.get("/fav", (req, res) => {
                      res.send(result)
                  }
              })
-    }
 })
 
 app.listen(process.env.PORT, ()=> {
